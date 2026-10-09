@@ -911,5 +911,29 @@ namespace MUnique.OpenMU.Persistence.Initialization.Properties {
         /// <summary>Gets the localized AddIronKnightStabUpdatePlugIn_Description text.</summary>
         public static string AddIronKnightStabUpdatePlugIn_Description => ResourceManager.GetString("AddIronKnightStabUpdatePlugIn_Description", resourceCulture)!;
 
+        /// <summary>Gets the localized MoveServerPortsOutOfDynamicRangePlugInBase_Name text.</summary>
+        public static string MoveServerPortsOutOfDynamicRangePlugInBase_Name => ResourceManager.GetString("MoveServerPortsOutOfDynamicRangePlugInBase_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized MoveServerPortsOutOfDynamicRangePlugInBase_Description text.</summary>
+        public static string MoveServerPortsOutOfDynamicRangePlugInBase_Description => ResourceManager.GetString("MoveServerPortsOutOfDynamicRangePlugInBase_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized AddCashShopUpdatePlugIn_Name text.</summary>
+        public static string AddCashShopUpdatePlugIn_Name => ResourceManager.GetString("AddCashShopUpdatePlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized AddCashShopUpdatePlugIn_Description text.</summary>
+        public static string AddCashShopUpdatePlugIn_Description => ResourceManager.GetString("AddCashShopUpdatePlugIn_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized FixDinorantOptionNumbersPlugIn_Name text.</summary>
+        public static string FixDinorantOptionNumbersPlugIn_Name => ResourceManager.GetString("FixDinorantOptionNumbersPlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized FixDinorantOptionNumbersPlugIn_Description text.</summary>
+        public static string FixDinorantOptionNumbersPlugIn_Description => ResourceManager.GetString("FixDinorantOptionNumbersPlugIn_Description", resourceCulture)!;
+
+        /// <summary>Gets the localized ConfigureNpcTalkPlugInsPlugIn_Name text.</summary>
+        public static string ConfigureNpcTalkPlugInsPlugIn_Name => ResourceManager.GetString("ConfigureNpcTalkPlugInsPlugIn_Name", resourceCulture)!;
+
+        /// <summary>Gets the localized ConfigureNpcTalkPlugInsPlugIn_Description text.</summary>
+        public static string ConfigureNpcTalkPlugInsPlugIn_Description => ResourceManager.GetString("ConfigureNpcTalkPlugInsPlugIn_Description", resourceCulture)!;
+
     }
 }
