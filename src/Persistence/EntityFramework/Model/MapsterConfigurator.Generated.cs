@@ -78,6 +78,9 @@ public static class MapsterConfigurator
         Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.CharacterQuestState, MUnique.OpenMU.DataModel.Entities.CharacterQuestState>()
             .Include<CharacterQuestState, BasicModel.CharacterQuestState>();
 
+        Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.CrimsonCoinLedger, MUnique.OpenMU.DataModel.Entities.CrimsonCoinLedger>()
+            .Include<CrimsonCoinLedger, BasicModel.CrimsonCoinLedger>();
+
         Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.GensAbuse, MUnique.OpenMU.DataModel.Entities.GensAbuse>()
             .Include<GensAbuse, BasicModel.GensAbuse>();
 
@@ -110,6 +113,9 @@ public static class MapsterConfigurator
 
         Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.QuestMonsterKillRequirementState, MUnique.OpenMU.DataModel.Entities.QuestMonsterKillRequirementState>()
             .Include<QuestMonsterKillRequirementState, BasicModel.QuestMonsterKillRequirementState>();
+
+        Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.ShopItem, MUnique.OpenMU.DataModel.Entities.ShopItem>()
+            .Include<ShopItem, BasicModel.ShopItem>();
 
         Mapster.TypeAdapterConfig.GlobalSettings.NewConfig<MUnique.OpenMU.DataModel.Entities.SkillEntry, MUnique.OpenMU.DataModel.Entities.SkillEntry>()
             .Include<SkillEntry, BasicModel.SkillEntry>();
