@@ -1,9 +1,12 @@
 services:
 
   openmu-startup:
-    build:
-      context: ../../src
-      dockerfile: Startup/Dockerfile
+    # Local fork build from master. Pin to the 0.9.9 upstream image
+    # because the local build with EF Core 10 + Npgsql 10 was
+    # previously broken (validator + TempId column regressions).
+    # Switch back to a local tag (e.g. `munique/openmu:local-clean`)
+    # if the fork master builds and runs cleanly.
+    image: munique/openmu:0.9.9
     restart: "no"
     ports:
       - "8081:8080"
