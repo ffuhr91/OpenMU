@@ -46,12 +46,42 @@ internal class NonCachingRepositoryProvider : RepositoryProvider
     /// </summary>
     protected void RegisterMissingRepositoriesAsGeneric()
     {
-        var registeredTypes = this.Repositories.Keys.ToList();
         using var entityContext = new EntityDataContext();
         var modelTypes = entityContext.Model.GetEntityTypes().Select(e => e.ClrType);
-        var missingTypes = modelTypes.Where(t => t.BaseType is not null && !registeredTypes.Contains(t.BaseType));
-        foreach (var type in missingTypes)
+
+        // The original code snapshotted <c>Repositories.Keys</c> once and then
+        // filtered against that snapshot. That fails for two reasons:
+        //   1. Aggregate roots with dedicated repositories
+        //      (<c>Account</c>, <c>GameConfiguration</c>, <c>LetterBody</c>) extend
+        //      <see cref="object"/> directly — the snapshot's
+        //      <c>!registeredTypes.Contains(t.BaseType)</c> check returns false for
+        //      <c>object</c>, so the loop tried to register a second
+        //      <c>GenericRepository&lt;T&gt;</c> on top of the dedicated one and
+        //      threw <c>ArgumentException: An item with the same key has already
+        //      been added</c>.
+        //   2. The snapshot is taken BEFORE the loop modifies <c>Repositories</c>.
+        //      When a type with a non-object <c>BaseType</c> enters the loop,
+        //      <see cref="RepositoryProvider.RegisterRepository"/> stores the
+        //      repository under <c>t.BaseType</c>. The next sibling type that
+        //      shares the same <c>BaseType</c> doesn't see that update in the
+        //      snapshot and tries to register the same key again.
+        //
+        // Fix: iterate every model type and check the LIVE <c>Repositories</c>
+        // dictionary each iteration. Performance is O(n) per check, so the
+        // total is O(n²) in the number of model types — acceptable for OpenMU's
+        // ~60-entity model and avoids the stale-snapshot class of bugs entirely.
+        foreach (var type in modelTypes)
         {
+            if (type.BaseType is null)
+            {
+                continue;
+            }
+
+            if (this.Repositories.ContainsKey(type) || this.Repositories.ContainsKey(type.BaseType))
+            {
+                continue;
+            }
+
             var repository = this.CreateGenericRepository(type, this._parent ?? this);
             this.RegisterRepository(type, repository);
         }
